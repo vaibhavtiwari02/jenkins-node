@@ -1,0 +1,36 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Clone the repository
+                checkout scm
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                script {
+                    // Install dependencies
+                    sh 'npm install'
+                }
+            }
+        }
+        stage('Run Application') {
+            steps {
+                script {
+                    // Run the application (adjust as needed for your deployment scenario)
+                    sh 'node index.js &'
+                    // Optionally, use a different port or log the output as needed
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            // Clean up (if needed)
+            echo 'Cleaning up...'
+        }
+    }
+}
