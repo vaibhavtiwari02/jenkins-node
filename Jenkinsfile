@@ -8,6 +8,12 @@ pipeline {
                 checkout scm
             }
         }
+         stage('SonarQube Analysis') {
+        def scannerHome = tool 'SonarScanner';
+        withSonarQubeEnv() {
+      sh "${scannerHome}/bin/sonar-scanner"
+    }
+  }
         stage('Install Dependencies') {
             steps {
                 script {
