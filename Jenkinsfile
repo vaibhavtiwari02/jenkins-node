@@ -20,7 +20,7 @@ pipeline {
             steps {
                 script {
                     // Run the application (adjust as needed for your deployment scenario)
-                    sh 'node index.js &'
+                    sh 'pm2 restart index.js &'
                     // Optionally, use a different port or log the output as needed
                 }
             }
